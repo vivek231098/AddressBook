@@ -32,3 +32,58 @@ public class Main {
 				existingAddressBook = use.inputString();
 				if (addressBookManagerImp.checkAddress(existingAddressBook)) {
 					System.out.println("\t\t\tThis file already exists\n");
+					addressBookManagerImp.openAddressBook(existingAddressBook);
+					int i = 0;
+					while (i == 0) {
+						System.out.println("\t\t\t___________________\n"
+								+ "\t\t\t|       Menu\n"
+								+ "\t\t\t|\n"
+								+ "\t\t\t| 1. Add Contact  \n"
+								+ "\t\t\t| 2. Edit Contact   \n"
+								+ "\t\t\t| 3. Delete  Contact\n"
+								+ "\t\t\t| 4. Search Contact\n"
+								+ "\t\t\t| 5. Sort By Name\n"
+								+ "\t\t\t| 6. Sort By Zip\n"
+								+ "\t\t\t| 7. Display\n"
+								+ "\t\t\t| 8. Back to main menu\n"
+								+ "\t\t\t|________________________");
+						int choose = use.inputInteger();
+						switch (choose) {
+						case 1:
+							addressBookImp.addPerson();
+							break;
+						case 2:
+							addressBookImp.editPerson();
+							break;
+						case 3:
+							addressBookImp.deletePerson();
+							break;
+						case 4:
+							addressBookImp.searchPerson();
+							break;
+						case 5:
+							addressBookImp.sortByName();
+							break;
+						case 6:
+							addressBookImp.sortByZip();
+							break;
+						case 7:
+							addressBookImp.display();
+							break;
+						case 8:
+							System.out.println("\t\t\tGo Back to Main Menu");
+							i = 1;
+							break;
+						default:
+							System.out.println("\t\t\tNo such data\n" + "\t\t\tAddress Book named '" + existingAddressBook
+									+ "' closed\n");
+							addressBookImp.closeAddressBook(existingAddressBook);
+							i = 1;
+							break;
+						}
+					}
+				} 
+				else {
+					System.out.println("\t\t\tThis file does not exist");
+				}
+				break;
