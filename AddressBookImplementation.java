@@ -79,3 +79,20 @@ public class AddressBookImplementation implements AddressBookInterface{
 		if(count==0)
 			System.out.println("\n\t\t\tDoes not exist");	
 	}
+/*Removes data of a person from list*/
+	public void deletePerson() throws Exception {
+		System.out.println("\n\t\t\tEnter phoneNumber whose data is to be removed");
+		String phoneNumber = use.inputString();
+		int count = 0;
+		List<Person> Remove = new ArrayList<>();
+		for (Person P : list) {
+			if (phoneNumber.equals(P.getPhoneNumber())) {
+				System.out.println("\n\t\t\tData found\n\n\t\t\tData Removed");
+				Remove.add(P);
+				count++;
+			}
+		}
+		list.removeAll(Remove);
+		if (count == 0)
+			System.out.println("\n\t\t\tError");
+	}
