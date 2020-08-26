@@ -52,3 +52,36 @@ public  class AddressBookManagerImplementation implements AddressBookManagerInte
 	public void quit() {
 		System.exit(0);
 	}
+/*Checks total number of files present and displays the file names*/
+	public void readAddress() {
+		File f = new File("AddressBook/");
+		int count = 0;
+		for (File file : f.listFiles()) {
+			if (file.isFile()) {
+				System.out.println("\n\t\t\t"+file.getName());
+				count++;
+			}
+		}
+		System.out.println("\n\t\t\tTotal files: " + count);
+		
+	}
+
+	/*Checks whether the file is present or not existingAddressBook is the name of file 
+	 * to be checked return returns true if file is present or false if is not present*/
+	public boolean checkAddress(String existingAddressBook) {
+		File f = new File("AddressBook/");
+		int count = 0;
+		for (File file : f.listFiles()) {
+			if (file.isFile()) {
+				if (file.getName().equals(existingAddressBook + ".json")) {
+					count++;
+					break;
+				}
+			}
+		}
+		if (count == 1)
+			return true;
+		else
+			return false;
+	}
+}
