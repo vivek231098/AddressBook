@@ -26,3 +26,29 @@ public  class AddressBookManagerImplementation implements AddressBookManagerInte
 		AddressBookImplementation ab = new AddressBookImplementation();
 		ab.read(existingAddressBook);
 	}
+/*Calls saveAddressBook method in AddressBookImplementation class with the name of file
+	  in which data is to be saved*/
+	public void saveAddressBook(String file) {
+		AddressBookImplementation ab = new AddressBookImplementation();
+		ab.saveAddressBook(file);
+	}
+
+	/*Calls saveAsAddressBook method in AddressBookImplementation class with the name of 
+	 * file in which data is to be saved*/
+	public void saveAsAddressBook() {
+		AddressBookImplementation ab = new AddressBookImplementation();
+		ab.saveAsAddressBook();
+	}
+
+	/*Calls closeAddressBook method in AddressBookImplementation class with the
+	 *  name of file whose list is to be cleared if new address book is being opened*/
+	public void closeAddressBook(String existingAddressBook) {
+		AddressBookImplementation ab = new AddressBookImplementation();
+		ab.closeAddressBook(existingAddressBook);
+	}
+
+	/* Close the entire address book*/
+	@Override
+	public void quit() {
+		System.exit(0);
+	}
