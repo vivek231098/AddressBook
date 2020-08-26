@@ -114,3 +114,66 @@ public class AddressBookImplementation implements AddressBookInterface{
 		if (count == 0)
 			System.out.println("\n\t\t\tNot found");
 	}	
+/*Sorting of list respect to zip*/
+	public void sortByZip() {
+		Collections.sort(list, new SortByZip());
+		for (Person person : list) {
+			System.out.println(person.toString());
+		}	
+	}
+
+	public class SortByZip implements Comparator<Person> {
+	/* 
+	 * Compares the data and returns 0 if the  data is same 
+	 * and 1 if first data is greater
+	 * and -1 if second data is greater
+	 */
+	@Override
+		public int compare(Person p1, Person p2) {
+			if(p1.getZip()==p2.getZip())
+				return 0;
+			else {
+				if(p1.getZip()>p2.getZip()) {
+					return 1;
+				}else {
+					return -1;
+				}
+			}
+		}
+	}
+
+	/*Sorting of list respect to First Name*/
+	public void sortByName() {
+		Collections.sort(list, new SortByName());
+		for (Person person : list) {
+			System.out.println(person.toString());
+		}	
+	}
+
+	public class SortByName implements Comparator<Person>{
+	/* 
+	 * Compares the data and returns 0 if the  data is same 
+	 * and 1 if first data is greater
+	 * and -1 if second data is greater
+	 */
+		public int compare(Person personOne, Person personTwo) {
+			if(personOne.getFirstName().equals(personTwo.getFirstName()))
+				return 0;
+			else {
+				if(personOne.getFirstName().compareTo(personTwo.getFirstName())>0) {
+					return 1;
+					}
+				else {
+					return -1;
+					}
+				}
+			}
+	}
+	
+
+	/*Displaying the list*/
+	public void display() {
+		for (Person P : list) {
+			System.out.println(P.toString());
+		}
+	}
