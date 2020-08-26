@@ -87,3 +87,27 @@ public class Main {
 					System.out.println("\t\t\tThis file does not exist");
 				}
 				break;
+case 3:
+				addressBookManagerImp.saveAddressBook(existingAddressBook);
+				break;
+			case 4:
+				addressBookManagerImp.saveAsAddressBook();
+				break;
+			case 5:
+				System.out.println("Closing the Address Book");
+				addressBookManagerImp.closeAddressBook(existingAddressBook);
+				break;
+			case 6:
+				addressBookManagerImp.closeAddressBook(existingAddressBook);
+				System.out.println("\t\t\t Quitting Address Book!  Byee\n\t\t\t");
+				addressBookManagerImp.quit();
+				loop = 1;
+				break;
+			default:
+				System.out.println("\t\t\tError !!\n" + "\t\t\tClosed\n\t\t\t");
+				loop = 1;
+				break;
+			}
+		}
+	}
+}
