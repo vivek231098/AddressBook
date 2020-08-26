@@ -177,3 +177,78 @@ public class AddressBookImplementation implements AddressBookInterface{
 			System.out.println(P.toString());
 		}
 	}
+/*Editing of state,city,zip  and phone number
+	 *  P is the person object
+	 *  i is the case for editing address or phone number*/
+	private void editAddressBookPerson(Person P, int i) {
+		switch (i) {
+		case 1:
+			System.out.println("\n\t\t\tEnter the FirstName of the person");
+			P.setFirstName(use.inputString());
+			System.out.println("\n\t\t\tEnter the LastName of the person");
+			P.setLastName(use.inputString());
+			System.out.println("\n\t\t\t Updated the name");
+			break;
+		case 2:
+			System.out.println("\n\t\t\tEnter the state");
+			P.setState(use.inputString());
+			System.out.println("\n\t\t\tEnter the city");
+			P.setCity(use.inputString());
+			System.out.println("\n\t\t\tEnter the ZipCode");
+			P.setZip(use.inputInteger());
+			System.out.println("\n\t\t\tUpdated city,State and zip");
+			break;
+		case 3:
+			System.out.println("\n\t\t\tEnter the new Phone Number");
+			String phoneNumber = use.inputString();
+			P.setPhoneNumber(phoneNumber);
+			System.out.println("\n\t\t\tNew Phone Number updated ");
+			break;
+		}
+	}
+
+	/*Saving list data in file */
+	public void saveAddressBook(String file) {
+		try {
+			mapper.writeValue(new File("AddressBook/" + file + ".json"), list);
+			System.out.println("\n\t\t\tSaved");
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/*Saves the person list in a different file*/
+	public void saveAsAddressBook() {
+		System.out.println("\n\t\t\tEnter the name of the new file");
+		String fileNameNew = use.inputString();
+		saveAddressBook(fileNameNew);
+		System.out.println("\n\t\t\tData saved in new file");
+	}
+
+	/*clears the list from previous address book if new address book is opened*/
+	public void closeAddressBook(String existingAddressBook) {
+		list.clear();
+	}
+
+	/*Reading file from file existingAddressBook is the name of File from which 
+	 * data is to read and  throws Exception for file not found*/
+	public void read(String existingAddressBook) throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("AddressBook/" + existingAddressBook + ".json"));
+			String arrayToJson;
+			if ((arrayToJson = reader.readLine()) != null) {
+				TypeReference<ArrayList<Person>> type = new TypeReference<ArrayList<Person>>() {
+				};
+				list = objectMapper.readValue(arrayToJson, type);
+				reader.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
