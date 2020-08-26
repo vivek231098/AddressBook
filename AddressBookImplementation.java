@@ -32,7 +32,7 @@ public class AddressBookImplementation implements AddressBookInterface{
 	/*Adding information of person and add it in an object
 	 * return object of person will give with added information in it
 	 */
-	private Person addUser() {
+		private Person addUser() {
 		Person person = new Person();
 		System.out.println("\n\t\t\tEnter the First Name of the Person");
 		person.setFirstName(use.inputString());
@@ -48,4 +48,34 @@ public class AddressBookImplementation implements AddressBookInterface{
 		System.out.println("\n\t\t\tEnter the  Phone Number");
 		person.setPhoneNumber(use.inputString());
 		return person;
+	}
+	
+	/*Editing information of existing Person from list */
+	static int count = 0;
+	public void editPerson() {
+		System.out.println("\n\t\t\tEnter the phone Number");
+		String phoneNumber = use.inputString();
+		for (Person P : list) {
+			if (phoneNumber.equals(P.getPhoneNumber())) {
+				count++;
+				System.out.println("\n\t\t\tData found\n");
+				System.out.println("\t\t\t1.Edit Firstname and lastname\n\t\t\t2.Edit city,State and zip\n" +"\t\t\t3.Edit Phone Number\n");
+				int editChoice = use.inputInteger();
+				switch (editChoice) {
+				case 1:
+					editAddressBookPerson(P, 1);
+					break;
+				case 2:
+					editAddressBookPerson(P, 2);
+					break;
+				case 3:
+					editAddressBookPerson(P, 3);
+					break;
+				default:
+					System.out.println("\t\t\tError !!\n");
+				}
+			} 
+		} 
+		if(count==0)
+			System.out.println("\n\t\t\tDoes not exist");	
 	}
